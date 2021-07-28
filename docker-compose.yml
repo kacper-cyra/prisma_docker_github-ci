@@ -1,0 +1,15 @@
+services:
+  database:
+    image: "postgres:13"
+    restart: "always"
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: "kacper"
+      POSTGRES_PASSWORD: "password"
+      POSTGRES_DB: "test-db"
+    volumes:
+      - "db-data:/var/lib/postgresql/data/"
+
+volumes:
+  db-data:

@@ -1,0 +1,31 @@
+{
+  "name": "prisma_docker_github-cli",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:kacper-cyra/prisma_docker_github-cli.git",
+  "author": "kacper-cyra <kacper.cyranowski@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "test": "jest",
+    "test-db:start": "pg-test start",
+    "test-db:stop": "pg-test stop",
+    "prisma:push": "prisma db push",
+    "prisma:build": "prisma migrate",
+    "prisma:migrate": "prisma migrate dev"
+  },
+  "dependencies": {
+    "@prisma/client": "2.28.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@databases/pg-test": "^3.0.1",
+    "@types/express": "^4.17.13",
+    "@types/jest": "^26.0.24",
+    "@types/node": "^16.4.6",
+    "jest": "^27.0.6",
+    "prisma": "2.28.0",
+    "ts-node": "^10.1.0",
+    "typescript": "^4.3.5"
+  }
+}
