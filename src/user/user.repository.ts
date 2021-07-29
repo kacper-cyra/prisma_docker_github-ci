@@ -9,8 +9,14 @@ export class UserRepository {
     return this.prisma.user.findUnique({ where: { id } });
   }
 
+  async findByEmail(email: string) {
+    return this.prisma.user.findUnique({ where: { email } });
+  }
+
   async create(user: User) {
-    if (await this.findById(user.id)) return null;
+    const userFromDatabase = await this.findByEmail(user.email);
+
+    if (userFromDatabase) return { error: true, message: "User already exists." };
     return this.prisma.user.create({ data: user });
   }
 }
