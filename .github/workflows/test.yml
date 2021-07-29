@@ -1,0 +1,33 @@
+name: Pull Request
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+    container: node:10.18-jessie
+    services:
+      postgres:
+        image: postgres:13
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: test-db
+    env:
+      DATABASE_URL: postgres://postgres:password@localhost:5432/test-db?schema=public
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Install node v14
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+      - name: Install dependencies
+        run: yarn install --immutable
+      - name: Run migrations
+        run: yarn prisma migrate
+      - name: Run tests for all files
+        run: yarn test
