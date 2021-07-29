@@ -15,8 +15,6 @@ jobs:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: password
           POSTGRES_DB: test-db
-    env:
-      DATABASE_URL: postgresql://postgres:password@postgres:5432/test-db
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
@@ -29,4 +27,6 @@ jobs:
       - name: Run migrations
         run: yarn prisma migrate
       - name: Run tests for all files
+        env:
+          DATABASE_URL: postgresql://postgres:password@postgres:5432/test-db
         run: yarn test
