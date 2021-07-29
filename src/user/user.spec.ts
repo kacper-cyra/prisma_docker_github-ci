@@ -45,9 +45,7 @@ describe("User", () => {
         { name: "John", email: "john@gmail.com" },
       ],
     });
-
     agent = request(app);
-
     user = {
       email: "test@gmail.com",
       name: "Test User",
