@@ -6,6 +6,8 @@ on:
 
 jobs:
   test:
+    env:
+      DATABASE_URL: postgres://postgres:password@localhost:5432/test-db
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -17,8 +19,6 @@ jobs:
         run: docker ps -a
       - name: Prisma migrate
         run: yarn prisma migrate dev
-        env:
-          DATABASE_URL: postgres://postgres:password@localhost:5432/test-db
       - name: Test
         run: yarn test
       - name: Build
