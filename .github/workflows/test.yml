@@ -17,10 +17,8 @@ jobs:
         run: yarn
       - name: Spin up test database
         run: docker-compose up -d
-      - name: Wait until database up and running
-        run: docker ps -a
       - name: Prisma migrate
-        run: yarn prisma migrate dev
+        run: yarn prisma migrate deploy
       - name: Test
         run: yarn test
         
