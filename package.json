@@ -10,12 +10,12 @@
     "test": "jest",
     "start": "ts-node src/index.ts",
     "prisma:push": "prisma db push",
-    "prisma:build": "prisma migrate",
+    "prisma:deploy": "prisma migrate deploy",
     "prisma:migrate": "prisma migrate dev",
-    "docker:up": "docker-compose up -d",
+    "docker:up": "sudo docker-compose up -d",
     "docker:down": "docker-compose down",
-    "docker:clear": "docker-compose rm -s -v database",
-    "test:local": "yarn docker:up && yarn prisma:migrate && yarn test ; yarn docker:clear"
+    "docker:clear": "sudo docker-compose rm -s -v database",
+    "test:local": "yarn docker:up && yarn prisma:deploy && yarn test ; yarn docker:clear"
   },
   "dependencies": {
     "@prisma/client": "2.28.0",
